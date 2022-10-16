@@ -33,7 +33,7 @@ a.addEventListener("click", function (event) {
 
 
 function addItem() {
-  fetch("http://localhost:8000/items", {
+  fetch("https://java-spring-boot-1098.herokuapp.com/items", {
     method: "POST",
     headers: {
       Accept: "application/json",
@@ -73,7 +73,7 @@ function displayItemsFromArray(items) {
 }
 
 async function displayItems() {
-  let response = await fetch("http://localhost:8000/items");
+  let response = await fetch("https://java-spring-boot-1098.herokuapp.com/items");
   let items = await response.json();
   displayItemsFromArray(items)
   
@@ -111,7 +111,7 @@ edit.addEventListener("click",function(event){
 }
 
 function postEditedItem(id, name, price, description){
-  fetch(`http://localhost:8000/items/${id}`,{
+  fetch(`https://java-spring-boot-1098.herokuapp.com/items/${id}`,{
     method:"PUT",
     headers: {
       Accept: "application/json",

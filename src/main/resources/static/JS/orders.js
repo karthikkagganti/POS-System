@@ -1,7 +1,7 @@
 function changeStatus(id) {
   let a = document.getElementById(id);
   a.remove();
-  fetch(`http://localhost:8000/orderedItems/${id}`,{
+  fetch(`https://java-spring-boot-1098.herokuapp.com/${id}`,{
     method:"PUT",
     headers: {
         'Accept': 'application/json',
@@ -37,7 +37,7 @@ class Orders extends HTMLElement {
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
 	    `;
    
-    let response = await fetch("http://localhost:8000/orderedItems")
+    let response = await fetch("https://java-spring-boot-1098.herokuapp.com/orderedItems")
     orders = await response.json();
     orders = orders.filter((data) => data.status !== "Done");
     console.log(orders)
