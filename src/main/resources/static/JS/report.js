@@ -133,10 +133,3 @@ function closeWindow(){
     console.log("here")
     document.getElementById("view-area").style.display="none";
 }
-
-li = `
-
-`
-x=`
-
-`
