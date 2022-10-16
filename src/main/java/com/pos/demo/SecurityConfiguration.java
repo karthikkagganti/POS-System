@@ -35,6 +35,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 		.antMatchers("/orders").hasAnyRole("CHEF","OWNER","CASHIER")//for viewing order Status
 		.antMatchers("/customer").hasAnyRole("OWNER","CASHIER")// for adding new customers
 		.antMatchers("/admin").permitAll()
+		.antMatchers("/users").permitAll()
 		.antMatchers("/").permitAll()
 		.and().formLogin();
 	}
