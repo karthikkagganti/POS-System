@@ -31,7 +31,7 @@ function addStaff(){
         name: name.value,
         age: age.value,
         email: email.value,
-        password: password.email,
+        password: password.value,
         role: role.value,
         active:"true"
         })
