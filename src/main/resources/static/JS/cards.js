@@ -83,7 +83,7 @@ async function order(){
 }
 function addItemsToOrder(orderid){
   Cart.forEach((element)=>{
-    fetch(`https://java-spring-boot-1098.herokuapp.com/${orderid}/${element.id}/${element.quantity}`,{
+    fetch(`https://java-spring-boot-1098.herokuapp.com/orderedItems/${orderid}/${element.id}/${element.quantity}`,{
     headers: {
       'Accept': 'application/json',
       'Content-Type': 'application/json'
