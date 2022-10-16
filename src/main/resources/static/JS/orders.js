@@ -1,7 +1,7 @@
 function changeStatus(id) {
   let a = document.getElementById(id);
   a.remove();
-  fetch(`https://java-spring-boot-1098.herokuapp.com/${id}`,{
+  fetch(`https://java-spring-boot-1098.herokuapp.com/orderedItems/${id}`,{
     method:"PUT",
     headers: {
         'Accept': 'application/json',
