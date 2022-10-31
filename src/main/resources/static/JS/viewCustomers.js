@@ -1,10 +1,9 @@
-const viewCustomers = document.getElementById("view-customers");
 
 fetch("/cust")
   .then((data) => data.json())
-  .then((res) => viewCustomers(res));
+  .then((res) => view_customers(res));
 
-function viewCustomers(res) {
+function view_customers(res) {
   let x = document.getElementById("view-customers");
   x.textContent = ``;
   items.forEach((element) => {
