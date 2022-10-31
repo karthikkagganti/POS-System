@@ -93,6 +93,7 @@ async function order(){
   // 
 //  let x = document.getElementById("cart-list");
   addItemsToOrder(orderid);
+  window.alert("Order Added!")
 }
 
  function addItemsToOrder(orderid){

@@ -53,7 +53,7 @@ body {
 			<span class="icon is-small is-left"> <i
 				class="fas fa-envelope"></i>
 			</span>
-			<ul id="order-list" class="cards columns is-multiline">
+			<ul id="order-list" class="columns is-multiline">
 
 			</ul>
 			<span class="icon is-small is-left"> <i

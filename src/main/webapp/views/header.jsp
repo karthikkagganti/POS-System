@@ -47,9 +47,10 @@
     </c:if>
     
     <c:if test="${pageContext.request.isUserInRole('CASHIER')}">
-		<a href="/customer" class="navbar-item ">
-        Customer
+		<a href="/feedback" class="navbar-item ">
+        Feedback
       </a>
+      
       <a href="/billing" class="navbar-item ">
         Billing
       </a>
@@ -58,6 +59,9 @@
     <c:if test="${pageContext.request.isUserInRole('OWNER')}">
     <a href="/admin" class="navbar-item ">
         Admin
+      </a>
+      <a href="/feedback" class="navbar-item ">
+        Feedback
       </a>
       <a href="/customer" class="navbar-item ">
         Customer

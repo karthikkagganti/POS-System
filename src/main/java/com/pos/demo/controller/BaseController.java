@@ -26,6 +26,11 @@ public class BaseController {
 
 	@RequestMapping("/customer")
 	public String customers() {
+		return "viewCustomers";
+	}
+
+	@RequestMapping("/feedback")
+	public String feedback(){
 		return "customers";
 	}
 
