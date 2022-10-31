@@ -4,6 +4,9 @@ customer.innerHTML = `
 #error{
   display:none;
 }
+#success{
+	  display:none;
+	}
 </style>
 <div class="columns is-mobile">
   <div class="column is-half is-offset-one-quarter">
@@ -87,7 +90,8 @@ customer.innerHTML = `
         <button id="cancel-button" class="button is-link is-light">Cancel</button>
       </div>
     </div>
-    <p id="error">Please fill all the values</p>
+    <ul id="error"></ul>
+    
     </form>
   </div>
 </div>
@@ -111,21 +115,46 @@ class Customer extends HTMLElement {
     const phone = this.shadowRoot.querySelector("#mobileNumber");
     const feedback = this.shadowRoot.querySelector("#feedback");
     const orderid = this.getAttribute("orderid");
+    var err =[]
+    
     button.addEventListener("click", function (event) {
-      event.preventDefault();
-      if (
-        name.value == "" ||
-        email.value == "" ||
-        age.value == null ||
-        phone.value == "" ||
-        feedback.value == ""
-      ) {
-        error.style.display = "block";
-      } else {
-        error.style.display = "none";
-        registerCustomer();
-      }
-    });
+        event.preventDefault();
+        if (name.value === "") {
+            err.push("Username is missing!");
+          }
+        if (email.value == "" || !email.value.includes("@")|| !email.value.includes(".")) {
+            err.push("Email is missing or incorrect!");
+          }
+        if (age.value == "") {
+            err.push("Age is missing!");
+          }
+          if (phone.value === "" || phone.value.length != 10) {
+            err.push("Mobile Number is missing or incorrect!");
+            
+          }
+          if (feedback.value === "") {
+              err.push("The Feedback is missing!");
+              
+            }
+        if (err.length !== 0) {
+        error.textContent = ''
+          error.style.display = "block";
+          err.forEach((errors)=>{
+        	  const li = document.createElement("li");
+        	  li.innerHTML=`
+        	  <p>${errors}</p>
+        	  `
+        	  error.appendChild(li)
+          })
+          err=[]
+          
+        } else {
+          error.style.display = "none";
+          registerCustomer();
+        }
+      });
+    
+    
     async function registerCustomer() {
       const formData = {
         name: name.value,
@@ -136,7 +165,7 @@ class Customer extends HTMLElement {
         feedback: feedback.value
       };
       console.log(formData);
-      let response= await fetch("https://java-spring-boot-1098.herokuapp.com/cust", {
+      let response= await fetch("http://localhost:8000/cust", {
         headers: {
           Accept: "application/json",
           "Content-Type": "application/json",
@@ -152,9 +181,19 @@ class Customer extends HTMLElement {
         }),
       })
       let custid = await response.json();
+      done();
       return custid;
     }
     
+    function done(){
+    	alert("Customer Feedback Collected")
+    	name.value ='';
+    	phone.value ='';
+    	age.value ='';
+    	gender.value ='';
+    	email.value='';
+    	feedback.value = '';
+    }
 
   }
 }

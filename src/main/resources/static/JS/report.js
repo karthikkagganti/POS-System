@@ -8,7 +8,7 @@ button.addEventListener("click", function(event){
 })
 
 async function generateReports(){
-    let response = await fetch("https://java-spring-boot-1098.herokuapp.com/report",{
+    let response = await fetch("http://localhost:8000/report",{
         method:"POST",
         headers: {
             Accept: "application/json",
@@ -45,7 +45,7 @@ function displayReports(array){
 }
 
 function deleteReport(id){
-    fetch(`https://java-spring-boot-1098.herokuapp.com/report/${id}`,{
+    fetch(`http://localhost:8000/report/${id}`,{
         method:"DELETE",
         headers: {
             Accept: "application/json",
@@ -57,12 +57,12 @@ function deleteReport(id){
     location.reload();
 }
 async function fetchContent(){
-    let  response = await fetch(`https://java-spring-boot-1098.herokuapp.com/report`)
-    let array = await response.json();
+    let  response = await fetch(`http://localhost:8000/report`)
+    array = await response.json();
     displayReports(array);
 }
 async function fetchReport(id){
-    let  response = await fetch(`https://java-spring-boot-1098.herokuapp.com/report/${id}`)
+    let  response = await fetch(`http://localhost:8000/report/${id}`)
     let array = await response.json();
     fetchContent();
     return array;
@@ -124,7 +124,7 @@ async function temp(id){
 }
 
 async function viewReport(id){
-    let  response = await fetch(`https://java-spring-boot-1098.herokuapp.com/report/${id}`)
+    let  response = await fetch(`http://localhost:8000/report/${id}`)
     let array = await response.json();
     return array;
 
@@ -133,3 +133,10 @@ function closeWindow(){
     console.log("here")
     document.getElementById("view-area").style.display="none";
 }
+
+li = `
+
+`
+x=`
+
+`

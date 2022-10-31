@@ -1,0 +1,49 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css"
+    />
+    <title>Welcome</title>
+    <style>
+      body {
+        margin-left: 20px;
+      }
+      #cart-list {
+        display: none;
+        list-style: none;
+      }
+    </style>
+  </head>
+  <body>
+    <%@include  file="header.html" %>
+    <h1>Welcome To The Restaurant Billing System</h1>
+    <span class="icon is-small is-left">
+      <i class="fas fa-envelope"></i>
+    </span>
+    <!-- calling from cards.js -->
+    <div>
+      <button onClick="displayCart()" class="button is-link">Cart</button>
+      <span class="icon is-small is-left">
+        <i class="fas fa-envelope"></i>
+      </span>
+      <div>
+        <ul id="cart-list"></ul>
+      </div>
+      <span class="icon is-small is-left">
+        <i class="fas fa-envelope"></i>
+      </span>
+      <div id="customer-form"></div>
+      <my-cards></my-cards>
+    </div>
+    <script th:src="@{/JS/customer.js}"></script>
+    <script th:src="@{/JS/cards.js}"></script>
+    
+  </body>
+</html>

@@ -3,6 +3,8 @@ package com.pos.demo.service;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,25 +24,31 @@ public class OrderedItemsService {
 	ItemsRepository itemsRepository;
 	@Autowired
 	OrderedItemsRepository orderedItemsRepository;
+
+	
 	public void orderedItems(int orderid, int itemsid, int quantity) {
 		// TODO Auto-generated method stub
 		OrderedItems orderedItems = new OrderedItems();
 		Orders order = orderRepository.findById(orderid).get();
 		Items item = itemsRepository.findById(itemsid).get();
 		orderedItems.setItems(item);
-		orderedItems.setOrders(order);
-		orderedItems.setQuantity(quantity);	
+		order.addItems(orderedItems);
+//		orderedItems.setOrders(order);
+		orderedItems.setQuantity(quantity);
 		orderedItems.setItemName(item.getName());
-		orderedItems.setSubTotal(item.getPrice()*quantity);
-		orderedItems.setStatus("ordered");
+		orderedItems.setSubTotal(item.getPrice() * quantity);
+		order.setOrdervalue(order.getOrdervalue() + orderedItems.getSubTotal());
 		orderedItemsRepository.save(orderedItems);
+		orderRepository.save(order);
 	}
+
 	public List<OrderedItems> getOrderedItems() {
 		// TODO Auto-generated method stub
 		List<OrderedItems> orderedItems = new ArrayList<>();
-		orderedItemsRepository.findAll().forEach(orderedItems :: add);
+		orderedItemsRepository.findAll().forEach(orderedItems::add);
 		return orderedItems;
 	}
+
 	public List<Integer> getOrderedItemsById(int id) {
 		// TODO Auto-generated method stub
 		List<Integer> nums = new ArrayList<>();
@@ -49,12 +57,14 @@ public class OrderedItemsService {
 		nums.add(ordereditems.getOrders().getOrderid());
 		return nums;
 	}
+
 	public String deleteOrderedItems(int id) {
 		// TODO Auto-generated method stub
 		OrderedItems orderedItems = orderedItemsRepository.findById(id).get();
 		orderedItemsRepository.delete(orderedItems);
 		return "Deleted!";
 	}
+
 	public String changeStatus(int id) {
 		// TODO Auto-generated method stub
 		OrderedItems orderedItems = orderedItemsRepository.findById(id).get();
@@ -62,5 +72,5 @@ public class OrderedItemsService {
 		orderedItemsRepository.save(orderedItems);
 		return "Changed the Status";
 	}
-	
+
 }

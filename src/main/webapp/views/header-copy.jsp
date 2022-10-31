@@ -1,5 +1,3 @@
-const header=document.createElement('template');
-header.innerHTML =`
 <style>
 #header{
 	background-color:#090520;
@@ -50,41 +48,4 @@ li a{
 			<li><span sec:authentication="username">Username</span></li>
 		</ul>
 	<div>
-</div>
-`
-const footer = document.createElement('template');
-footer.innerHTML=`
-<style>
-h3{
-	color : red;
-}
-</style>
-<footer>
-	<h3>This is the footer</h3>
-</footer>
-`
-
-
-
-class MyHeader extends HTMLElement {
-
-  constructor() {
-	super();
-	this.attachShadow({mode:"open"})
-	this.shadowRoot.appendChild(header.content.cloneNode(true));
-	this.shadowRoot.getElementById(this.getAttribute('hello')).style.display="block";
-	
-  }
-}
-
-window.customElements.define('my-header', MyHeader);
-
-class MyFooter extends HTMLElement {
-  constructor() {
-	super();
-	this.attachShadow({mode:"open"})
-	this.shadowRoot.appendChild(footer.content.cloneNode(true));
-  }
-}
-
-customElements.define("my-footer", MyFooter);
+</div> 

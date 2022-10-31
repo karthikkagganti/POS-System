@@ -3,6 +3,7 @@ package com.pos.demo.entity;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -28,12 +29,14 @@ public class Orders {
 	@Column(name = "order_id")
 	private int orderid;
 	private float ordervalue;
-	private String status;
+	private String status = "ordered";
+	private int tableNo;
 	private LocalDate orderDate = java.time.LocalDate.now();
 	private LocalTime orderTime = java.time.LocalTime.now();
 //	
-	@JsonIgnore
-	@OneToMany(mappedBy = "orders")
+	
+	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@JoinTable(name = "orders_ordereditems", joinColumns = @JoinColumn(name = "orderid", referencedColumnName = "order_id"), inverseJoinColumns = @JoinColumn(name = "id",referencedColumnName = "id"))
 	private List<OrderedItems> orders = new ArrayList<>();
 	
 	
@@ -42,14 +45,23 @@ public class Orders {
 
 	}
 
-	public Orders(int orderid, float ordervalue, String status, LocalDate orderDate, LocalTime orderTime) {
+	public Orders(int orderid, float ordervalue, String status, LocalDate orderDate, LocalTime orderTime, int tableNo) {
 		super();
 		this.orderid = orderid;
 		this.ordervalue = ordervalue;
 		this.status = status;
 		this.orderDate = orderDate;
 		this.orderTime = orderTime;
-//		this.customer = customer;
+		this.tableNo = tableNo;
+	}
+
+	
+	public int getTableNo() {
+		return tableNo;
+	}
+
+	public void setTableNo(int tableNo) {
+		this.tableNo = tableNo;
 	}
 
 	public LocalTime getOrderTime() {
@@ -98,5 +110,9 @@ public class Orders {
 
 	public void setOrders(List<OrderedItems> orders) {
 		this.orders = orders;
+	}
+	
+	public void addItems(OrderedItems orderedItems) {
+		this.orders.add(orderedItems);
 	}
 }

@@ -5,23 +5,51 @@ const age = document.querySelector("#age");
 const email = document.querySelector("#email");
 const password = document.querySelector("#password");
 const confirmPassword = document.querySelector("#confirm-password");
+const error = document.getElementById("error");
+var err= []
+
+
 button.addEventListener("click", function (event) {
     event.preventDefault();
-    if (
-      name.value == "" ||
-      email.value == "" ||
-      age.value == null ||
-      password.value == "" ||
-      password.value !== confirmPassword.value
-    ) {
+    if (name.value === "") {
+        err.push("The username is missing!");
+      }
+    if (email.value == "" || !email.value.includes("@")|| !email.value.includes(".")) {
+        err.push("The email is missing or incorrect!");
+      }
+    if (age.value == "") {
+        err.push("The age is missing!");
+      }
+      if (password.value === "") {
+        err.push("The password is missing!");
+        
+      }
+      if (password.value !== confirmPassword.value) {
+      	console.log(confirmPassword.value)
+          err.push("The passwords are not matching!");
+        }
+      
+    
+    console.log(err)
+    if (err.length !== 0) {
+    error.textContent = ''
       error.style.display = "block";
+      err.forEach((errors)=>{
+    	  const li = document.createElement("li");
+    	  li.innerHTML=`
+    	  <p>${errors}</p>
+    	  `
+    	  error.appendChild(li)
+      })
+      err=[]
+      
     } else {
       error.style.display = "none";
       addStaff()
     }
   });
 function addStaff(){
-    fetch("https://java-spring-boot-1098.herokuapp.com/users",{
+    fetch("http://localhost:8000/users",{
         method:"POST",
         headers: {
             Accept: "application/json",
@@ -36,6 +64,15 @@ function addStaff(){
         active:"true"
         })
     })
-    .then((response)=>console.log(response))
+    .then((response)=>done())
     .catch((error)=>console.log(error))
+}
+
+function done(){
+	alert("Employee Added!")
+	name.value ='';
+	password.value ='';
+	age.value ='';
+	email.value='';
+	role.value = '';
 }

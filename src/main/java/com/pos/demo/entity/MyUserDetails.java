@@ -25,8 +25,6 @@ public class MyUserDetails implements UserDetails {
 		this.password = user.getPassword();
 		this.active = user.isActive();
 		this.role = Arrays.asList(new SimpleGrantedAuthority("ROLE_"+user.getRole()));
-		System.out.println(email);
-		System.out.println(password);
 	}
 	public MyUserDetails() {
 

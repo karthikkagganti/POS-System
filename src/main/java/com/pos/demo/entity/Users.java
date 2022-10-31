@@ -11,6 +11,8 @@ public class Users {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int userid;
+	private String name;
+	private int age;
 	private String email;
 	private String role;
 	private String password;
@@ -57,6 +59,18 @@ public class Users {
 	}
 	public void setActive(boolean active) {
 		this.active = active;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public int getAge() {
+		return age;
+	}
+	public void setAge(int age) {
+		this.age = age;
 	}
 	
 }

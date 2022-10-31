@@ -13,7 +13,7 @@ button.addEventListener("click", function (event) {
   } else {
     error.style.display = "none";
     addItem();
-    location.reload();
+    
   }
 });
 
@@ -33,7 +33,7 @@ a.addEventListener("click", function (event) {
 
 
 function addItem() {
-  fetch("https://java-spring-boot-1098.herokuapp.com/items", {
+  fetch("http://localhost:8000/items", {
     method: "POST",
     headers: {
       Accept: "application/json",
@@ -45,7 +45,7 @@ function addItem() {
       price: price.value,
     }),
   })
-    .then((response) => console.log(response))
+    .then((response) => location.reload())
     .catch((error) => console.log(error));
 }
 
@@ -73,7 +73,7 @@ function displayItemsFromArray(items) {
 }
 
 async function displayItems() {
-  let response = await fetch("https://java-spring-boot-1098.herokuapp.com/items");
+  let response = await fetch("http://localhost:8000/items");
   let items = await response.json();
   displayItemsFromArray(items)
   
@@ -111,7 +111,7 @@ edit.addEventListener("click",function(event){
 }
 
 function postEditedItem(id, name, price, description){
-  fetch(`https://java-spring-boot-1098.herokuapp.com/items/${id}`,{
+  fetch(`http://localhost:8000/items/${id}`,{
     method:"PUT",
     headers: {
       Accept: "application/json",
@@ -123,5 +123,5 @@ function postEditedItem(id, name, price, description){
       price: price,
     }),
   })
-  .then((res)=>console.log(res))
+  .then((res)=>location.reload())
 }

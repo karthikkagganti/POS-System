@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.stereotype.Service;
 
 
@@ -15,8 +16,10 @@ public class UserService {
 	
 	@Autowired
 	private UserRepository userRepository;
+	
 
 	public String addUser(Users user) {
+		user.setPassword(BCrypt.hashpw(user.getPassword().toString(), BCrypt.gensalt(4)));
 		userRepository.save(user);
 		return "User Added!";
 	}

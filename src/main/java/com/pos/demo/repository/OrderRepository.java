@@ -1,6 +1,6 @@
 package com.pos.demo.repository;
 
-import java.time.LocalDate;
+
 import java.util.List;
 import java.util.Optional;
 
@@ -12,5 +12,6 @@ import com.pos.demo.entity.Orders;
 
 public interface OrderRepository extends JpaRepository<Orders, Integer> {
 
-	
+	Optional<List<Orders>> findByTableNoAndStatus(int tableNo, String status);
+	Optional<List<Orders>> findByStatus(String status);
 }

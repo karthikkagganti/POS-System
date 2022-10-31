@@ -32,7 +32,7 @@ public class Reports {
 
 	
 
-	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinTable(name = "ordered_for_the_day", joinColumns = @JoinColumn(name = "reportid", referencedColumnName = "reportid"), inverseJoinColumns = @JoinColumn(name = "id",referencedColumnName = "id"))
 	private Set<OrderedItems> orderedItems = new HashSet<>();
 

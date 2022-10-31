@@ -1,7 +1,10 @@
+const tableNo = document.getElementById("billing-table-options");
+let orders = [];
+
 function changeStatus(id) {
-  let a = document.getElementById(id);
+  let a = document.getElementById("li-"+id);
   a.remove();
-  fetch(`https://java-spring-boot-1098.herokuapp.com/orderedItems/${id}`,{
+  fetch(`http://localhost:8000/order/${id}`,{
     method:"PUT",
     headers: {
         'Accept': 'application/json',
@@ -11,25 +14,52 @@ function changeStatus(id) {
 }
 function displayOrders(orders){
     let x = document.getElementById("order-list");
+    x.textContent =''
     console.log(orders);
-    orders.forEach((element) => {
+    orders.forEach((order) => {
         let li = document.createElement("li");
-        li.setAttribute("id",element.id)
+        li.setAttribute("id","li-"+order.orderid)
         li.innerHTML = `
-          <div class="column card" style="width:200px">
+        <div class="column">
+          <div class="column card" style="width:200px; gap:10px">
               <div class="card-content">
-                  <div class="media-content">
-                      <p class="title is-4">${element.itemName}</p>
-                      <p class="subtitle is-6">quantity: ${element.quantity}</p>
-                      <a onclick="changeStatus(${element.id})" class="button is-link">Done</a>
+                  <div id="${order.orderid}" class="media-content">
+                      <p class="title is-4">Table No: ${order.tableNo}</p>
+                      
                   </div>
               </div>
-          </div>
+              <a onclick="changeStatus(${order.orderid})" class="button is-link ml-6">Done</a>
+            </div>
+           </div>
           `;
         x.appendChild(li);
-      });
+        order.orders.forEach((element) => {
+            p = document.createElement("div");
+            p.innerHTML = `<p>${element.quantity}   X  ${element.itemName}</p>
+            <span class="icon is-small is-left">
+            <i class="fas fa-envelope"></i>
+            </span>
+            `
+            document.getElementById(order.orderid).append(p)
+        })
+    });
 }
-let orders = [];
+
+function selectBillingTableNo(){
+	if(tableNo.value === "Select All Tables"){	
+		displayOrders(orders);
+		return
+	}
+	console.log("here")
+//	console.log(parseInt(tableNo.value))
+	orders.forEach((data)=> console.log(data.tableNo))
+	console.log(orders)
+	const modifiedOrder = orders.filter((data)=> data.tableNo === parseInt(tableNo.value))
+	console.log(modifiedOrder)
+	displayOrders(modifiedOrder);
+}
+
+
 class Orders extends HTMLElement {
   async connectedCallback() {
     this.attachShadow({ mode: "open" });
@@ -37,10 +67,9 @@ class Orders extends HTMLElement {
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
 	    `;
    
-    let response = await fetch("https://java-spring-boot-1098.herokuapp.com/orderedItems")
+    let response = await fetch("http://localhost:8000/order")
     orders = await response.json();
-    orders = orders.filter((data) => data.status !== "Done");
-    console.log(orders)
+// orders = orders.filter((data) => data.status !== "Done");
     displayOrders(orders);
   }
 }

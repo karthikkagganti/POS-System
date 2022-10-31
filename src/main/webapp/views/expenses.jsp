@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <title>Restaurant Billing System - Expenses</title>
+    <style>
+        body{
+            margin-left:20px;
+        }
+    </style>
+</head>
+<body>
+    
+    <jsp:include page="header.jsp"/>
+    <h3 class="ml-4">Hey Owner!</h3>
+    <style>
+        #error {
+          display:none;
+        }
+        #success {
+          display:none;
+        }
+        </style>
+        <div class="columns is-mobile">
+          <div class="column is-half is-offset-one-quarter">
+            <form class="is-centered">
+            <p class="title">Expenses</p>
+            <div class="field ">
+              <label class="label">Name</label>
+              <div class="control">
+                <input class="input" id="name" type="text" placeholder="Please Enter Expense Name">
+                <span class="icon is-small is-left">
+                <i class="fas fa-envelope"></i>
+              </span>
+              </div>
+            </div>
+        
+            <div class="field">
+              <label class="label">Amount</label>
+              <div class="control">
+                <input class="input" id="amount" type="number" placeholder="Please Enter Amount">
+                <span class="icon is-small is-left">
+                <i class="fas fa-envelope"></i>
+              </span>
+              </div>
+            </div>
+        
+            <div class="field is-grouped">
+              <div class="control">
+                <button id="submit-button" type="submit" class="button is-link">Submit</button>
+              </div>
+              <div class="control">
+                <button id="cancel-button" class="button is-link is-light">Cancel</button>
+              </div>
+            </div>
+            <p id="error">Please fill all the values</p>
+            <p id="success">Expenses added!</p>
+            </form>
+          </div>
+        </div>
+    <script src="JS/expenses.js"></script>
+    
+</body>
+</html>

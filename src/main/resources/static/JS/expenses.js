@@ -1,6 +1,8 @@
 const button = document.querySelector("#submit-button");
 const name = document.querySelector("#name");
 const amount = document.querySelector("#amount");
+const success = document.querySelector("#success");
+
 button.addEventListener("click", function (event) {
     event.preventDefault();
     if (
@@ -10,11 +12,12 @@ button.addEventListener("click", function (event) {
       error.style.display = "block";
     } else {
       error.style.display = "none";
-      addStaff()
+      addExp()
     }
   });
-function addStaff(){
-    fetch("https://java-spring-boot-1098.herokuapp.com/expenses",{
+function addExp(){
+	
+   fetch("http://localhost:8000/expenses",{
         method:"POST",
         headers: {
             Accept: "application/json",
@@ -25,6 +28,12 @@ function addStaff(){
         amount: amount.value,
         })
     })
-    .then((response)=>console.log(response))
-    .catch((error)=>console.log(error))
+    .then((res)=>done())
+    .catch((err)=>console.log(err))
+}
+
+function done(){
+	success.style.display="block";
+	name.value ='';
+	amount.value =''
 }

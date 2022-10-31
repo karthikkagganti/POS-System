@@ -25,25 +25,31 @@ public class OrderService {
 	
 	public List<Orders> getOrders() {
 		List<Orders> orders = new ArrayList<>();
-		orderRepository.findAll().forEach(orders::add);
+		orders = orderRepository.findByStatus("ordered").get();
 		return orders;
 	}
 	
-	public int addOrders() {
-		Orders orders = new Orders();
+	public int addOrders(Orders orders) {
 		orderRepository.save(orders);
 		return orders.getOrderid();
 	}
 	
 	public String updateOrders(int orderid) {
 		Orders order = orderRepository.findById(orderid).get();
-		order.setStatus("Done");
+		order.setStatus("billing");
+//		order.getOrders().forEach((orderedItems)->{orderedItems.setStatus("Done");});
 		orderRepository.save(order);
 		return "Order was updated";
 	}
 	
 	public Orders getOrdersById(int orderid) {
 		return orderRepository.findById(orderid).get();
+	}
+
+	public List<Orders> getOrdersWithBilling() {
+		List<Orders> orders = new ArrayList<>();
+		orders = orderRepository.findByStatus("billing").get();
+		return orders;
 	}
 	
 }

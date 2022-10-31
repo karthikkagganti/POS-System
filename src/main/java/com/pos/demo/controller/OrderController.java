@@ -26,18 +26,23 @@ public class OrderController {
 		return orderService.getOrders();
 	}
 	
-	@GetMapping("/orders/{orderid}")
+	@GetMapping("/billings")
+	public List<Orders> getOrdersWithBilling(){
+		return orderService.getOrdersWithBilling();
+	}
+	
+	@GetMapping("/order/{orderid}")
 	public Orders getOrdersByid(@PathVariable int orderid){
 		return orderService.getOrdersById(orderid);
 	}
 	
 	@PostMapping("/order")
-		public int addOrders() {
-			return orderService.addOrders();
+		public int addOrders(@RequestBody Orders orders) {
+			return orderService.addOrders(orders);
 		}
 	
 	//changing the status of the order
-	@PutMapping("/orders/{orderid}")
+	@PutMapping("/order/{orderid}")
 	public String updateOrders(@PathVariable int orderid) {
 		return orderService.updateOrders(orderid);
 	}

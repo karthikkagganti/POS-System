@@ -44,20 +44,28 @@ function addItemsToCartList() {
     x.appendChild(li)
   }
   else{
-    Cart.forEach((element) => {
+	Cart.forEach((element) => {
       li = document.createElement("li");
       li.innerHTML = `
+      
+      <span class="icon is-small is-left"> <i
+		class="fas fa-envelope"></i>
+	  </span>
       <div>
         <p>item: ${element.name}</p>
         <p>quantity: ${element.quantity}</p>
       </div>
+      <span class="icon is-small is-left"> <i
+		class="fas fa-envelope"></i>
+	</span>
+	
     `;
       
       x.appendChild(li);
     });
     li = document.createElement("li");
     li.innerHTML = `
-    <button onClick="order()">order</button>
+    <a class="button is-link" onClick="order()">order</a>
     `
     x.appendChild(li)
   }
@@ -65,12 +73,16 @@ function addItemsToCartList() {
 
 async function order(){
   console.log(Cart);
-  var response = await fetch("https://java-spring-boot-1098.herokuapp.com/order",{
+  const tableNo = document.getElementById("tableNo").value;
+  var response = await fetch("http://localhost:8000/order",{
     headers: {
       'Accept': 'application/json',
       'Content-Type': 'application/json'
     },  
     method: "POST",
+    body:JSON.stringify({
+        tableNo: parseInt(tableNo[tableNo.length -1]),
+      })
   })
   let orderid = await response.json();
   // .then((response)=>response.json())
@@ -79,22 +91,37 @@ async function order(){
   // Cart.forEach((element)=>{
   //   
   // 
+//  let x = document.getElementById("cart-list");
   addItemsToOrder(orderid);
 }
-function addItemsToOrder(orderid){
+
+ function addItemsToOrder(orderid){
   Cart.forEach((element)=>{
-    fetch(`https://java-spring-boot-1098.herokuapp.com/orderedItems/${orderid}/${element.id}/${element.quantity}`,{
-    headers: {
-      'Accept': 'application/json',
-      'Content-Type': 'application/json'
-    },  
-    method: "POST",
-  })
-  .then((response)=>console.log(response))
-  })
-  }
-
-
+	  (async () => {
+		  const res = await fetch(`http://localhost:8000/orderedItems/${orderid}/${element.id}/${element.quantity}`,{
+			    headers: {
+				      'Accept': 'application/json',
+				      'Content-Type': 'application/json'
+				    },  
+				    method: "POST",
+			});
+		  const json = await res.json();
+		  console.log(json);
+		  console.log("Hello!");
+		})();
+		  })
+}
+  
+async function postOrderedItems(orderid, elementId, elementQuantity){
+	var res=await fetch(`http://localhost:8000/orderedItems/${orderid}/${elementId}/${elementQuantity}`,{
+	    headers: {
+	      'Accept': 'application/json',
+	      'Content-Type': 'application/json'
+	    },  
+	    method: "POST",
+})
+	console.log(res);
+	}
 function callCustomer(orderid){
   document.getElementById("customer-form").innerHTML=`
   <new-customer orderid=${orderid}></new-customer>
@@ -102,7 +129,7 @@ function callCustomer(orderid){
 }
 function displayCart() {
   // console.log(Cart)
-  let x = document.getElementById("cart-list");
+  let x = document.getElementById("cart-card");
   if (x.style.display === "block") {
     x.style.display = "none";
   } else {
@@ -118,19 +145,21 @@ class Cards extends HTMLElement {
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
 	    `;
     this.shadowRoot.appendChild(cards.content.cloneNode(true));
-    fetch("https://java-spring-boot-1098.herokuapp.com/items")
+    fetch("http://localhost:8000/items")
       .then((response) => response.json())
       .then((data) => {
         data.forEach((data) => {
           var li = document.createElement("li");
           li.innerHTML = `
-            <div class="column card" style="width:300px">
+          <div class="column">
+            <div class="card" style="width:250px;height:250px">
                 <div class="card-content">
                   <h4 class="title is-4">${data.name}</h4>
                   <p class="subtitle is 6">${data.description}</p>
                   <a onClick="addToCart(${data.itemsid},'${data.name}','add')" class="button is-link">₹${data.price}</a>
                   <a onClick="addToCart(${data.itemsid},'${data.name}','sub')" class="button is-cancel">delete</a>          
                 </div>
+            </div>
             </div>
             `;
           this.shadowRoot.querySelector("#list-items").appendChild(li);
