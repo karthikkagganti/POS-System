@@ -73,13 +73,17 @@ payButton.addEventListener('click', function (event){
 	if(billTable.value === "Select Table No."){
 		return
 	}
-	fetch(`/order/${id}/done`,{
-		method:"PUT",
-		headers: {
-			'Accept': 'application/json',
-			'Content-Type': 'application/json'
-		  }
-	  })
+	const order = tables.filter(data => data.tableNo === billTable.value)
+	order.forEach(ele =>{
+		fetch(`/order/${ele.id}/done`,{
+			method:"PUT",
+			headers: {
+				'Accept': 'application/json',
+				'Content-Type': 'application/json'
+			  }
+		  })
+	})
+	
 	window.location = "/feedback";
 })
 
