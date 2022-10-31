@@ -7,9 +7,10 @@
     <title>View Customers</title>
 </head>
 <body>
+    <jsp:include page="header.jsp" />
     <div>
         <div class="rows">
-            <ul id="view-customers"></ul>
+            <ul class="columns is-multiline" id="view-customers"></ul>
         </div>
     </div>
     <script src="JS/viewCustomers.js"></script>
