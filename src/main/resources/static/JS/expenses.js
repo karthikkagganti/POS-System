@@ -17,7 +17,7 @@ button.addEventListener("click", function (event) {
   });
 function addExp(){
 	
-   fetch("https://java-spring-boot-1098.herokuapp.com/expenses",{
+   fetch("/expenses",{
         method:"POST",
         headers: {
             Accept: "application/json",

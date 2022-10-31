@@ -11,11 +11,11 @@ function view_customers(res) {
     const tableRow = document.createElement("tr");
     
     tableRow.innerHTML = `
-				<td>${count}</td>
 				<td>${element.name}</td>
 				<td>${element.email}</td>
+                <td>${element.orderDate}</td>
+                <td>${element.gender}</td>
 				<td>${element.mobile}</td>
-				<td>${element.orderDate}</td>
 				<td>${element.feedback}</td>
                 `;
     x.appendChild(tableRow);

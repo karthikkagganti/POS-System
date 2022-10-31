@@ -165,7 +165,7 @@ class Customer extends HTMLElement {
         feedback: feedback.value
       };
       console.log(formData);
-      let response= await fetch("https://java-spring-boot-1098.herokuapp.com/cust", {
+      let response= await fetch("/cust", {
         headers: {
           Accept: "application/json",
           "Content-Type": "application/json",

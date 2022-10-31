@@ -14,7 +14,7 @@ var set = new Set();
 fetchBill();
 
  function fetchBill(){
-	fetch("https://java-spring-boot-1098.herokuapp.com/billings")
+	fetch("/billings")
 	.then((res)=>res.json())
 	.then((data)=>addTableNo(data))
 }

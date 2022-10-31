@@ -49,7 +49,7 @@ button.addEventListener("click", function (event) {
     }
   });
 function addStaff(){
-    fetch("https://java-spring-boot-1098.herokuapp.com/users",{
+    fetch("/users",{
         method:"POST",
         headers: {
             Accept: "application/json",
