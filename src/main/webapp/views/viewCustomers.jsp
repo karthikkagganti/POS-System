@@ -8,10 +8,32 @@
 </head>
 <body>
     <jsp:include page="header.jsp" />
-    <div>
-        <div>
-            <ul class="columns is-multiline" id="view-customers"></ul>
-        </div>
+    <div class="ml-4">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Order Date</th>
+                    <th>Gender</th>
+                    <th>Mobile Number</th>
+                    <th>Feedback</th>
+                </tr>
+            </thead>
+            <tfoot>
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Order Date</th>
+                    <th>Gender</th>
+                    <th>Mobile Number</th>
+                    <th>Feedback</th>
+                </tr>
+            </tfoot>
+            <tbody id="view-customers">
+
+            </tbody>
+        </table>
     </div>
     <script src="JS/viewCustomers.js"></script>
 </body>
