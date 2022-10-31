@@ -1,4 +1,4 @@
-const count =1;
+var count =1;
 
 fetch("/cust")
   .then((data) => data.json())
