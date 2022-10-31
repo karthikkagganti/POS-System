@@ -73,7 +73,7 @@ payButton.addEventListener('click', function (event){
 	if(billTable.value === "Select Table No."){
 		return
 	}
-	window.location = "https://java-spring-boot-1098.herokuapp.com/customer";
+	window.location = "/feedback";
 })
 
 
