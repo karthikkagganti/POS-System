@@ -9,7 +9,7 @@
 <body>
     <jsp:include page="header.jsp" />
     <div>
-        <div class="rows">
+        <div>
             <ul class="columns is-multiline" id="view-customers"></ul>
         </div>
     </div>

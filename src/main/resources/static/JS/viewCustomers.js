@@ -5,7 +5,7 @@ fetch("/cust")
   .then((res) => viewCustomers(res));
 
 function viewCustomers(res) {
-  let x = document.getElementById("item-list");
+  let x = document.getElementById("view-customers");
   x.textContent = ``;
   items.forEach((element) => {
     li = document.createElement("li");
