@@ -6,7 +6,7 @@ fetch("/cust")
 function view_customers(res) {
   let x = document.getElementById("view-customers");
   x.textContent = ``;
-  items.forEach((element) => {
+  res.forEach((element) => {
     li = document.createElement("li");
     li.innerHTML = `
     <div class="column">
