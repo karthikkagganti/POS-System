@@ -74,7 +74,7 @@ payButton.addEventListener('click', function (event){
 		return
 	}
 	console.log(tables)
-	const order = tables.filter(data => data.tableNo === billTable.value)
+	const order = tables.filter(data => data.tableNo === parseInt(billTable.value))
 	console.log(order)
 	order.forEach(ele =>{
 		fetch(`/order/${ele.id}/done`,{
