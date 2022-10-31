@@ -76,8 +76,9 @@ payButton.addEventListener('click', function (event){
 	console.log(tables)
 	const order = tables.filter(data => data.tableNo === parseInt(billTable.value))
 	console.log(order)
-	order.forEach(ele =>{
-		fetch(`/order/${ele.id}/done`,{
+	order.forEach((ele)=>{
+		console.log(ele);
+		fetch(`/order/${ele.orderid}/done`,{
 			method:"PUT",
 			headers: {
 				'Accept': 'application/json',
