@@ -14,7 +14,7 @@ var set = new Set();
 fetchBill();
 
  function fetchBill(){
-	fetch("http://localhost:8000/billings")
+	fetch("https://java-spring-boot-1098.herokuapp.com/billings")
 	.then((res)=>res.json())
 	.then((data)=>addTableNo(data))
 }
@@ -73,7 +73,7 @@ payButton.addEventListener('click', function (event){
 	if(billTable.value === "Select Table No."){
 		return
 	}
-	window.location = "http://localhost:8000/customer";
+	window.location = "https://java-spring-boot-1098.herokuapp.com/customer";
 })
 
 

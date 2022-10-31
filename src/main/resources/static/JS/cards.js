@@ -74,7 +74,7 @@ function addItemsToCartList() {
 async function order(){
   console.log(Cart);
   const tableNo = document.getElementById("tableNo").value;
-  var response = await fetch("http://localhost:8000/order",{
+  var response = await fetch("https://java-spring-boot-1098.herokuapp.com/order",{
     headers: {
       'Accept': 'application/json',
       'Content-Type': 'application/json'
@@ -98,7 +98,7 @@ async function order(){
  function addItemsToOrder(orderid){
   Cart.forEach((element)=>{
 	  (async () => {
-		  const res = await fetch(`http://localhost:8000/orderedItems/${orderid}/${element.id}/${element.quantity}`,{
+		  const res = await fetch(`https://java-spring-boot-1098.herokuapp.com/orderedItems/${orderid}/${element.id}/${element.quantity}`,{
 			    headers: {
 				      'Accept': 'application/json',
 				      'Content-Type': 'application/json'
@@ -113,7 +113,7 @@ async function order(){
 }
   
 async function postOrderedItems(orderid, elementId, elementQuantity){
-	var res=await fetch(`http://localhost:8000/orderedItems/${orderid}/${elementId}/${elementQuantity}`,{
+	var res=await fetch(`https://java-spring-boot-1098.herokuapp.com/orderedItems/${orderid}/${elementId}/${elementQuantity}`,{
 	    headers: {
 	      'Accept': 'application/json',
 	      'Content-Type': 'application/json'
@@ -145,7 +145,7 @@ class Cards extends HTMLElement {
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
 	    `;
     this.shadowRoot.appendChild(cards.content.cloneNode(true));
-    fetch("http://localhost:8000/items")
+    fetch("https://java-spring-boot-1098.herokuapp.com/items")
       .then((response) => response.json())
       .then((data) => {
         data.forEach((data) => {
