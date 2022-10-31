@@ -18,7 +18,7 @@ function view_customers(res) {
 				<td>${element.orderDate}</td>
 				<td>${element.feedback}</td>
                 `;
-    x.appendChild(li);
+    x.appendChild(tableRow);
     count++;
   });
 }
