@@ -42,9 +42,9 @@ public class OrderController {
 		}
 	
 	//changing the status of the order
-	@PutMapping("/order/{orderid}")
-	public String updateOrders(@PathVariable int orderid) {
-		return orderService.updateOrders(orderid);
+	@PutMapping("/order/{orderid}/{done}")
+	public String updateOrders(@PathVariable int orderid, @PathVariable String done) {
+		return orderService.updateOrders(orderid, done);
 	}
 		
 }

@@ -4,7 +4,7 @@ let orders = [];
 function changeStatus(id) {
   let a = document.getElementById("li-"+id);
   a.remove();
-  fetch(`/order/${id}`,{
+  fetch(`/order/${id}/billing`,{
     method:"PUT",
     headers: {
         'Accept': 'application/json',

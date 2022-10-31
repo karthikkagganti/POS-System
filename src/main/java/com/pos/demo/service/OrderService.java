@@ -34,9 +34,9 @@ public class OrderService {
 		return orders.getOrderid();
 	}
 	
-	public String updateOrders(int orderid) {
+	public String updateOrders(int orderid, String done) {
 		Orders order = orderRepository.findById(orderid).get();
-		order.setStatus("billing");
+		order.setStatus(done);//billing or done
 //		order.getOrders().forEach((orderedItems)->{orderedItems.setStatus("Done");});
 		orderRepository.save(order);
 		return "Order was updated";

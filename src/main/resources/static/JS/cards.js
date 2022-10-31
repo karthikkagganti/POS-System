@@ -1,3 +1,5 @@
+const cart_card = document.getElementById("cart-card");
+
 cards = document.createElement("template");
 cards.innerHTML = `
 <style>
@@ -94,6 +96,8 @@ async function order(){
 //  let x = document.getElementById("cart-list");
   addItemsToOrder(orderid);
   window.alert("Order Added!")
+  Cart =[];
+  cart_card.style.display = "none";
 }
 
  function addItemsToOrder(orderid){
@@ -130,11 +134,11 @@ function callCustomer(orderid){
 }
 function displayCart() {
   // console.log(Cart)
-  let x = document.getElementById("cart-card");
-  if (x.style.display === "block") {
-    x.style.display = "none";
+  
+  if  (cart_card.style.display === "block") {
+   cart_card.style.display = "none";
   } else {
-    x.style.display = "block";
+   cart_card.style.display = "block";
     addItemsToCartList();
   }
 }

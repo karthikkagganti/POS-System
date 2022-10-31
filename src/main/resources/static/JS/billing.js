@@ -73,6 +73,13 @@ payButton.addEventListener('click', function (event){
 	if(billTable.value === "Select Table No."){
 		return
 	}
+	fetch(`/order/${id}/done`,{
+		method:"PUT",
+		headers: {
+			'Accept': 'application/json',
+			'Content-Type': 'application/json'
+		  }
+	  })
 	window.location = "/feedback";
 })
 
