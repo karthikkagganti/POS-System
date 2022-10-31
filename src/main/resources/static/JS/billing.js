@@ -73,7 +73,9 @@ payButton.addEventListener('click', function (event){
 	if(billTable.value === "Select Table No."){
 		return
 	}
+	console.log(tables)
 	const order = tables.filter(data => data.tableNo === billTable.value)
+	console.log(order)
 	order.forEach(ele =>{
 		fetch(`/order/${ele.id}/done`,{
 			method:"PUT",
