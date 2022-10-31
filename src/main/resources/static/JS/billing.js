@@ -83,8 +83,8 @@ payButton.addEventListener('click', function (event){
 			  }
 		  })
 	})
+	.then((res)=>window.location = "/feedback")
 	
-	window.location = "/feedback";
 })
 
 
