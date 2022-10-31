@@ -82,8 +82,9 @@ payButton.addEventListener('click', function (event){
 				'Content-Type': 'application/json'
 			  }
 		  })
+		.then((res)=>window.location = "/feedback")
 	})
-	.then((res)=>window.location = "/feedback")
+	
 	
 })
 
