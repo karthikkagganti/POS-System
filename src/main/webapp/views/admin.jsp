@@ -72,7 +72,7 @@
               </div>
         
             <div class="field">
-              <label class="label">Gender</label>
+              <label class="label">Role</label>
               <div class="control">
                 <div class="select" >
                   <select id="role">
