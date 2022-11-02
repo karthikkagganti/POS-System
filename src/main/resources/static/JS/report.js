@@ -27,6 +27,7 @@ function checkFlag() {
 }
 async function generateReports() {
   checkFlag();
+  console.log(flag)
   if (flag == 0) {
     let response = await fetch("/report", {
       method: "POST",
