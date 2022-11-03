@@ -18,7 +18,7 @@ button.addEventListener("click", function (event) {
 
 function checkFlag() {
   reports.forEach((ele) => {
-    if (ele.reportDate === today) {
+    if (ele.reportDate == today) {
       flag = 1;
     } else {
       flag = 0;

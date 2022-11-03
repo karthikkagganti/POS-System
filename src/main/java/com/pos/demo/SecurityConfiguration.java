@@ -35,7 +35,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 		.antMatchers(HttpMethod.POST,"/reports").hasAnyRole("ADMIN","OWNER")
 		.antMatchers("/item/**").hasAnyRole("ADMIN","OWNER")// for viewing reports and editing menu items 
 		.antMatchers(HttpMethod.POST,"/items").hasAnyRole("ADMIN","OWNER")
-		// .antMatchers("/admin/**").hasAnyRole("ADMIN","OWNER")// for adding new employees
+		.antMatchers("/admin/**").hasAnyRole("ADMIN","OWNER")// for adding new employees
 		.antMatchers(HttpMethod.POST,"/users").hasAnyRole("ADMIN","OWNER")
 		.antMatchers("/orders/**").hasAnyRole("CHEF","OWNER","CASHIER")//for viewing order Status
 		.antMatchers(HttpMethod.POST,"/orders/**").hasAnyRole("CHEF","OWNER","CASHIER")
